@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.tiles.mapper.DeptMapper">
+
+    <sql id="selectAll">
+        select id, name, create_time, update_time from dept
+    </sql>
+    <update id="inser">
+        insert into dept(name,create_time, update_time)
+        values (#{name},#{createTime},#{updateTime});
+    </update>
+
+    <update id="update">
+        update dept set name = #{name},create_time = #{createTime}, update_time = #{updateTime} where id = #{id}
+    </update>
+
+
+    <select id="list" resultType="com.example.tiles.pojo.Dept">
+        <include refid="selectAll"></include>
+    </select>
+
+    <delete id="deleteById" >
+        delete from dept where id = #{id}
+    </delete>
+</mapper>
